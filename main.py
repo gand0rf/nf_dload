@@ -33,7 +33,7 @@ def dload_fonts(font_list):
 def unzip_fonts():
     home = os.path.expanduser('~')
     if not os.path.exists(f'{home}/.local/share/fonts'):
-        ps.makedirs(f'{home}/.local/share/fonts')
+        os.makedirs(f'{home}/.local/share/fonts')
     os.system(f"unzip -o '*.zip' -d {home}/.local/share/fonts >/dev/null 2>&1")
 
 def zip_remove():
