@@ -17,8 +17,8 @@ def get_fonts():
 
     return font_list
 
-def dload_fonts(font_list):
-    home = os.path.expanduser('~')
+def dload_fonts(home, font_list):
+
     if not os.path.exists(f'{home}/Downloads/fonts'):
         os.makedirs(f'{home}/Downloads/fonts')
     
@@ -30,27 +30,29 @@ def dload_fonts(font_list):
     
     return 0
 
-def unzip_fonts():
-    home = os.path.expanduser('~')
+def unzip_fonts(home):
     if not os.path.exists(f'{home}/.local/share/fonts'):
         os.makedirs(f'{home}/.local/share/fonts')
     os.system(f"unzip -o '*.zip' -d {home}/.local/share/fonts >/dev/null 2>&1")
 
-def zip_remove():
+def zip_remove(home):
     os.system('rm *.zip')
+    os.chdir(f'{home}/Downloads')
+    os.rmdir(f'{home}/Downloads/fonts')
 
 if __name__ == "__main__":
+    home = os.path.expanduser('~')
     print('Getting font urls...')
     font_list = get_fonts()
     print('Font list made')
     print('Downloading font archives...')
-    dload_fonts(font_list)
+    dload_fonts(home, font_list)
     print('Downloading completed')
     print('Unzipping fonts...')
-    unzip_fonts()
+    #unzip_fonts(home)
     print('Unzipping completed')
     remove = input('Remove font zip archives? [y/n] ')
     if remove == 'y':
-        zip_remove()
+        zip_remove(home)
     print('Installation of Nerd Fonts complete. Enjoy!!')
             
