@@ -49,7 +49,7 @@ if __name__ == "__main__":
     dload_fonts(home, font_list)
     print('Downloading completed')
     print('Unzipping fonts...')
-    #unzip_fonts(home)
+    unzip_fonts(home)
     print('Unzipping completed')
     remove = input('Remove font zip archives? [y/n] ')
     if remove == 'y':
